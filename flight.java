@@ -1,65 +1,102 @@
 package com.example.demo;
 
-public class flight {
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
+public class Flight {
+		@Id
+		@GeneratedValue(strategy=GenerationType.IDENTITY)
+		private Integer id;
+		private String fromPlace;
+		private String toPlace; 
+		private String startDateTime;
+		private String endDateTime;
+		private int numberOfRows;
+		private int businessClassRows;
+		private int nonBusinessClassRows;
+		private int cost;
+		private String food;
+		private String airline;
+		
 		private int flightNumber;
-		/**
-		 * @param flightNumber
-		 * @param airline
-		 * @param fromPlace
-		 * @param toPlace
-		 * @param startDateTime
-		 * @param endDateTime
-		 * @param numberofRows
-		 * @param businessClassRows
-		 * @param serviceClassRows
-		 * @param cost
-		 * @param food
-		 */
-		public flight(int flightNumber, String airline, String fromPlace, String toPlace, String startDateTime,
-				String endDateTime, int numberofRows, int businessClassRows, int serviceClassRows, int cost,
-				String food) {
+		public int getFlightNumber() {
+			return flightNumber;
+		}
+		public void setFlightNumber(int flightNumber) {
 			this.flightNumber = flightNumber;
-			Airline = airline;
-			FromPlace = fromPlace;
-			ToPlace = toPlace;
-			StartDateTime = startDateTime;
-			EndDateTime = endDateTime;
-			NumberofRows = numberofRows;
-			BusinessClassRows = businessClassRows;
-			NonBusinessClassRows = serviceClassRows;
-			Cost = cost;
+		}
+		public String getFromPlace() {
+			return fromPlace;
+		}
+		public void setFromPlace(String fromPlace) {
+			this.fromPlace = fromPlace;
+		}
+		public String getToPlace() {
+			return toPlace;
+		}
+		public void setToPlace(String toPlace) {
+			this.toPlace = toPlace;
+		}
+		public String getStartDateTime() {
+			return startDateTime;
+		}
+		public void setStartDateTime(String startDateTime) {
+			this.startDateTime = startDateTime;
+		}
+		public String getEndDateTime() {
+			return endDateTime;
+		}
+		public void setEndDateTime(String endDateTime) {
+			this.endDateTime = endDateTime;
+		}
+		public int getNumberOfRows() {
+			return numberOfRows;
+		}
+		public void setNumberOfRows(int numberOfRows) {
+			this.numberOfRows = numberOfRows;
+		}
+		public int getBusinessClassRows() {
+			return businessClassRows;
+		}
+		public void setBusinessClassRows(int businessClassRows) {
+			this.businessClassRows = businessClassRows;
+		}
+		public int getNonBusinessClassRows() {
+			return nonBusinessClassRows;
+		}
+		public void setNonBusinessClassRows(int nonBusinessClassRows) {
+			this.nonBusinessClassRows = nonBusinessClassRows;
+		}
+		public int getCost() {
+			return cost;
+		}
+		public void setCost(int cost) {
+			this.cost = cost;
+		}
+		public String getFood() {
+			return food;
+		}
+		public void setFood(String food) {
 			this.food = food;
 		}
-		private String Airline;
-		private String FromPlace;
-		private String ToPlace; 
-		private String StartDateTime;
-		private String EndDateTime;
-		private int NumberofRows;
-		private int BusinessClassRows;
-		private int NonBusinessClassRows;
-		private int Cost;
-		private String food;
-		/**
-		 * @param flightNumber
-		 * @param airline
-		 * @param fromPlace
-		 * @param toPlace
-		 * @param startDateTime
-		 * @param endDateTime
-		 */
-		
-		public int BookFlightBusinessClass(int NumberofSeatsToBeBooked) {
-			if(NumberofSeatsToBeBooked<=BusinessClassRows) {
-				BusinessClassRows-=NumberofSeatsToBeBooked;
-				return NumberofSeatsToBeBooked;
+		public String getAirline() {
+			return airline;
+		}
+		public void setAirline(String airline) {
+			this.airline = airline;
+		}
+		public int BookFlightBusinessClass(int numberofSeatsToBeBooked) {
+			if(numberofSeatsToBeBooked<=businessClassRows) {
+				businessClassRows-=numberofSeatsToBeBooked;
+				return numberofSeatsToBeBooked;
 			}
 			return 0;}
-			public int BookFlightNonBusinessClass(int NumberofSeatsToBeBooked) {
-				if(NumberofSeatsToBeBooked<=NonBusinessClassRows) {
-					NonBusinessClassRows-=NumberofSeatsToBeBooked;
-					return NumberofSeatsToBeBooked;
+			public int BookFlightNonBusinessClass(int numberofSeatsToBeBooked) {
+				if(numberofSeatsToBeBooked<=nonBusinessClassRows) {
+					nonBusinessClassRows-=numberofSeatsToBeBooked;
+					return numberofSeatsToBeBooked;
 				}
 				return 0;
 		}

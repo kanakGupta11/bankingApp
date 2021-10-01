@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,28 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1.0/flight")
 @RestController
 public class FlightController {
+	@Autowired
+	FlightService flightService;
 	ArrayList<Users> users = new ArrayList<>();
-	@PostMapping("/airline/register")
-	String register(@RequestBody Users user) {
-		users.add(user);
-		return "Registered Successfully!!";
-	}	
-	
-	@GetMapping("/booking/history/{emailId}")
-	Users History(@PathVariable String email) {
-		for(Users usr:users) {
-			if(usr.getEmail().equals(email)) {
-				return usr;
-			}
-		}
-		return null;
-		
+	@GetMapping("/findall/flight")
+	java.util.List<Flight> getFlight() {
+		return flightService.getFlights();
+	}
+	@GetMapping("/search")
+	java.util.List<Flight> searchFlight(@RequestBody Flight flight) {
+		return flightService.searchFlightService(flight);
 	}
 	
-	@GetMapping("/")
-	ArrayList getDetails() {
-		return users;
-	}
+	
 	
 	
 }
