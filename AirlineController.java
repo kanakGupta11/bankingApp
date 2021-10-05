@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AirlineController {
 	@Autowired
 	AirlineService airlineService;
-	@PostMapping("ailine/register")
+	@PostMapping("/ailine/register")
 	String registerAdmin(@RequestBody Airline airline ) {
 		airlineService.registerAirline(airline);
 		return "admin registered";

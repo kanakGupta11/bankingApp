@@ -7,7 +7,10 @@ import javax.persistence.Id;
 public class BookTicket {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Integer pnr;
+	public Integer getPnr() {
+		return pnr;
+	}
 	private int flightId;
 	private int numberOfSeatsBooked;
 	private String email;
@@ -17,7 +20,6 @@ public class BookTicket {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	private double pnr;
 	public int getFlightId() {
 		return flightId;
 	}
@@ -30,11 +32,4 @@ public class BookTicket {
 	public void setNumberOfSeatsBooked(int numberOfSeatsBooked) {
 		this.numberOfSeatsBooked = numberOfSeatsBooked;
 	}
-	public double getPnr() {
-		return pnr;
-	}
-	public void setPnr(double pnr) {
-		this.pnr = pnr;
-	}
-
 }

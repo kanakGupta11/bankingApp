@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookTicketController {
 	@Autowired
 	BookTicketService bookTicketService;
-	@GetMapping("booking/history/{emailId}")
+	@GetMapping("/booking/history/{email}")
 	List<BookTicket> bookinghistory(@PathVariable String email){
 		return bookTicketService.findBookinghistory(email);
 		
@@ -27,10 +27,10 @@ public class BookTicketController {
 		bookTicketService.saveBookedTicket(bookTicket);
 		return "ticket booked";
 	}
-	@PostMapping("/ticket/{pnr}")
-	String ticketByPnr(@RequestBody BookTicket bookTicket) {
-		bookTicketService.findTicketByPnr(bookTicket);
-		return "ticket booked";
+	@GetMapping("/ticket/{pnr}")
+	List<BookTicket> ticketByPnr(@PathVariable int pnr) {
+		return bookTicketService.findTicketByPnr(pnr);
+		 
 	}
 	@DeleteMapping("/booking/cancel/{pnr}")
 	String deleteTicketByPnr(@PathVariable int pnr) {

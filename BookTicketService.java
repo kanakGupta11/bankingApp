@@ -7,24 +7,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BookTicketService {
-	Random random = new Random();
 	@Autowired
 	BookTicketReository bookTicketReository;
 	public void saveBookedTicket(BookTicket bookTicket) {
-		int generatePnr=random.nextInt();
-		if (generatePnr<0) {
-			bookTicket.setPnr(-1*generatePnr);
-		}else {
-		bookTicket.setPnr(generatePnr);}
 		bookTicketReository.save(bookTicket);
 		
 	}
-	public List<BookTicket> findTicketByPnr(BookTicket bookTicket) {
-		return bookTicketReository.findByPnr(bookTicket.getPnr());
+	public List<BookTicket> findTicketByPnr(int pnr) {
+		return bookTicketReository.findByPnr(pnr);
 		
 	}
 	public void deleteTicketByPnr(int pnr) {
 		bookTicketReository.deleteById(pnr);
+		return;
 	}
 	public List<BookTicket> findBookinghistory(String email) {
 		return bookTicketReository.findByEmail(email);
